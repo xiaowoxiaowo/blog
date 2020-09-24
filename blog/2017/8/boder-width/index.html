@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>巧用boder-width宽度</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <script src="../../../../plugins/js/jquery.js"></script>
+</head>
+<style>
+    .test {
+        width: 0;
+        height: 0;
+        border-left: 50px solid red;
+        border-right: 50px solid red;
+        border-bottom: 50px solid blue;
+        border-top: 50px solid blue;
+        display: inline-block;
+        position: relative;
+        left: 50%;
+    }
+    .triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid red;
+        margin: 0 auto;
+    }
+    .trapezoid {
+        border-bottom: 100px solid red;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        height: 0;
+        width: 100px;
+        margin: 0 auto;
+    }
+</style>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 50% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">巧用boder-width宽度</div>
+        <div class="date">17 August 2017</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>boder-width在平时的使用当中，都是给元素添加不同颜色，不同宽度的边框线来使当前元素和其他的元素区分开来。但是boder-width还有一些不为人知的属性，能发挥神奇的功能。</p>
+    <p>平时我们使用boder-width的时候，当前元素都是有宽度和高度的设置。但是如果这个元素宽度和高度为0时，我们设置boder-width的时候，会发生什么？</p>
+    <xmp>
+    .test {
+        width: 0;
+        height: 0;
+        border-left: 50px solid red;
+        border-right: 50px solid red;
+        border-bottom: 50px solid blue;
+        border-top: 50px solid blue;
+    }
+    </xmp>
+    <div class="test" style="margin-left: -50px"></div>
+    <p>如上所示，出现了这种效果，4个boder边框，分别占据了div的4块三角边。这时候，如果我们把一条边去掉会怎样？</p>
+    <div class="test" style="border-top: 0px;margin-left: -200px"></div>
+    <div class="test" style="border-left: 0px"></div>
+    <div class="test" style="border-bottom: 0px"></div>
+    <div class="test" style="border-right: 0px"></div>
+    <p>上面四个分别是border-top: 0px,border-left: 0px,border-bottom: 0px,border-right: 0px。每次去掉一条边，相应的一半就没了。</p>
+    <p>根据这个效果，我们可以做一个纯css的图形</p>
+    <div class="triangle-up"></div>
+    <xmp>
+    .triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid red;
+    }
+    </xmp>
+    <p>比如上面的三角形，颜色，方向，大小都可以通过不同方向上的border-width去改变。</p>
+    <div class="trapezoid"></div>
+    <xmp>
+        .trapezoid {
+        border-bottom: 100px solid red;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        height: 0;
+        width: 100px;
+        }
+    </xmp>
+    <p>还有上面这个梯形效果，只要设置一下width的宽度，height为0。</p>
+    <p>还有许多复杂的图形也能做，比如六角星，五角星，五边型。但这些需要before和after伪元素来配合实现，而且不太适用平时的开发场景，
+        在这边就不详细描述了。有兴趣的同学可以去这个网址上看看<a href="http://www.jb51.net/css/41448.html">纯CSS画的基本图形</a>。</p>
+    <p>boder-width这种的效果，还可以用于翻页效果的实现，先看看<a href="demo/" target="_blank">demo</a>吧。</p>
+    <img src="imgs/2.png" class="demo">
+    <p>实现的原理很简单，就是通过img图片的before伪元素的border-width的改变，加上过渡效果。代码可以直接看demo页面。</p>
+
+
+
+
+
+
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+<script src="../../../../plugins/js/jquery.lazyload.js"></script>
+</body>
+</html>

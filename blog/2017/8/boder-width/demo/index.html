@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .box{
+            width: 300px;
+            height: 250px;
+            border: 1px solid #ccc;
+            margin-top: 100px;
+            position: relative;
+            left: 50%;
+            margin-left: -150px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .img{
+            width: 100%;
+            height: 100%;
+            background: url("../../hover-direction/imgs/1.jpg") no-repeat 50% 50% / 100% 100%;
+        }
+        .img::before{
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            right: 0;
+            top: 0;
+            -ms-transition: border .5s;
+            -o-transition: border .5s;
+            -webkit-transition: border .5s;
+            transition: border .5s;
+        }
+        .img.click::before{
+            border-right:600px solid white;
+            border-bottom: 500px solid rgba(0,0,0,0.4);
+            width: 0;
+            height: 0;
+        }
+        .img.click:hover:before{
+            border-right:600px solid white;
+            border-bottom: 500px solid rgba(0,0,0,0.4);
+            width: 0;
+            height: 0;
+        }
+        .img:hover:before{
+            border-right:50px solid white;
+            border-bottom: 50px solid rgba(0,0,0,0.4);
+            width: 0;
+            height: 0;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <div class="img"></div>
+    </div>
+
+    <script src="../../../../../plugins/js/jquery.js"></script>
+    <script type="text/javascript">
+
+        $(".img").click(function () {
+            $(".img").addClass("click");
+        })
+    </script>
+</body>
+</html>

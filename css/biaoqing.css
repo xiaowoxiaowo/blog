@@ -1,0 +1,30 @@
+
+/*下面这些是各种表情包*/
+.content div.hj_1{
+    width: 100%;
+    height: 150px;
+    margin-left: 25px;
+    background: url("../imgs/biaoqing/hj_1.gif") no-repeat 50% 0 / 150px 100%;
+}
+.content div.cy_dog{
+    width: 100%;
+    height: 80px;
+    margin-left: 25px;
+    background: url("../imgs/biaoqing/cy_dog.jpg") no-repeat 50% 0 / 80px 100%;
+}
+.content div.cbz{
+    width: 100%;
+    height: 67px;
+    margin-left: 25px;
+    background: url("../imgs/biaoqing/cbz.gif") no-repeat 50% 0 / 59px 100%;
+}
+.content div.first_zb{
+    width: 100%;
+    height: 102px;
+    margin-left: 25px;
+    background: url("../imgs/biaoqing/first_zb.gif") no-repeat 50% 0 / 167px 100%;
+}
+.content a.douban{
+    padding-left: 25px;
+    background: url("../imgs/link/douban.png") no-repeat 0% 50% / 25px 25px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>有方向的hover效果</title>
+    <meta name="HandheldFriendly" content="true">
+    <link rel="canonical" href="http://zouxiaowo.cn/blog/2017/8/hover-direction/">
+    <meta name="description" content="hover实现的方向性效果">
+    <meta name="keywords" content="hover，有方向的hover，css选择器"/>
+    <meta name="author" content="zoujiatong">
+
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<style>
+    .ifr1{
+        width: 100%;
+        height: 370px;
+        border: 0px;
+    }
+    .ifr2{
+        width: 100%;
+        height: 370px;
+        border: 0px;
+    }
+</style>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">有方向的hover效果</div>
+        <div class="date">02 August 2017</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>昨天才完成的博客模板，今天要是不写个一篇博客，感觉真说不过去。想了想，找了一个之前自己弄得，还挺有意思小玩意来分享出来。</p>
+    <p>也废话不多说，先看看效果。如下所示</p>
+    <iframe src="demo/index.html" class="ifr1" scrolling="no"></iframe>
+    <p>当你的鼠标移动到这个div的相应位置的时候，这个div的hover事件会向相应的方向移动。而且这个只是css的效果，没有用到js。哈，是不是感觉很神奇。</p>
+    <div class="first_zb"></div>
+    <p>这个效果的重点其实就只有两个，一个是CSS3的3d效果，还有一个是CSS3的选择器~。</p>
+    <p>CSS3的3d效果我就不在这边介绍了，也是比较基本的概念。这块只要在div偏转方向的时候，注意一下3d转换的视角就好。
+        接下来重点介绍一下CSS的选择器~。根据<a href="http://www.runoob.com/cssref/css-selectors.html">菜鸟教程</a>里的介绍，
+        比如p~ul是选择p元素之后的每一个ul元素。通过这个选择器，我们就可以通过不同的分支来控制同一个div。下面上代码:</p>
+    <xmp>
+    <div class="container">
+        <a href="" class="a1"></a>
+        <a href="" class="a2"></a>
+        <a href="" class="a3"></a>
+        <a href="" class="a4"></a>
+        <a href="" class="a5"></a>
+        <a href="" class="a6"></a>
+        <a href="" class="a7"></a>
+        <a href="" class="a8"></a>
+        <a href="" class="a9"></a>
+        <div class="card"></div>
+    </div>
+    </xmp>
+    <p>container是一个3d舞台。下面的9个a标签以九宫格的形式放在这个div里面。最下面那个card就是我们所看到的那个在转动的div。</p>
+    <xmp>
+    .container .a1:hover ~div{
+        perspective-origin:100% 100%;
+        transform: rotateY(-10deg) rotateX(10deg);
+    }
+    .container .a2:hover ~div{
+        perspective-origin:50% 100%;
+        transform: rotateX(10deg);
+    }
+    ...
+    </xmp>
+    <p>每次鼠标移到相应的a标签上时，都会使card的位置发生相应的转动。就实现的上面那个例子所示的效果。明白了原理之后，其实这个东西也是很简单的，不过重点还是实现这个效果的思想，讲究对于CSS选择器的深入了解！</p>
+    <p>这个原理可以延伸的方向有很多，下面再看一个延展的例子:</p>
+    <iframe src="demo/index1.html" class="ifr2" scrolling="no"></iframe>
+    <p>这个效果跟上面的实现原理是同样的，都是通过~选择器，通过4个方向上的不同标签去使主体显示的那部分产生变化。不同的仅仅只是这个hover的3d效果而已。
+        但是这个效果还是有些问题，就是给人感觉太灵敏，如果鼠标在短时间内碰到两个方向，旋转的效果就是有点不如人意!</p>
+    <p>这两个例子都在这个<a href="../../../../demo/hover_direction">demo</a>里，感兴趣的同学可以看着样子自己动手试试。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

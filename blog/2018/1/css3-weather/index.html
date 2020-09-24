@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>CSS3实现的天气预报效果</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">CSS3实现的天气预报效果</div>
+        <div class="date">12 January 2018</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>好吧，离上次更新博客已经过去2个月了，最近项目进展一直很忙，而且处于对新框架的不断学习当中，这类的学习的过程学到的东西，我个人
+    觉得实在没有必要在这边写出来，又多又嘈杂，又带了许多我这种初学者的片面之见。网上一搜，肯定有好的教程。</p>
+    <p>张鑫旭老师写的<a href="https://book.douban.com/subject/27615777/" class="douban">CSS世界</a>出版了,强烈推荐大家购买来看看，
+    张鑫旭老师10年以来对于CSS的研究的经验都包含在其中了，看完你会发现一个不一样的CSS世界。当然，更推荐入手一本张老师签名的书，哈哈！</p>
+    <p>言归正传,今天来介绍一个很厉害的效果，CSS3实现的天气预报效果，我第一眼看到这个的时候，真的很惊艳，居然CSS也能做到这种的样子。要做出这个来，
+        感觉除了大脑洞的程序员，还需要一个稍微懂点技术的设计师。下面来一个个看一下。</p>
+
+    <h4>1.晴天</h4>
+    <div class="css-cell">
+        <div class="sun"></div>
+    </div>
+    <h4>2.多云</h4>
+    <div class="css-cell">
+        <div class="cloudy"></div>
+    </div>
+    <h4>3.阴天</h4>
+    <div class="css-cell">
+        <div class="cloudy2"></div>
+    </div>
+    <h4>4.下雨</h4>
+    <div class="css-cell">
+        <div class="rainy"></div>
+    </div>
+    <h4>5.大风</h4>
+    <div class="css-cell">
+        <div class="breeze-container">
+            <div class="breeze"></div>
+        </div>
+    </div>
+    <h4>6.彩虹</h4>
+    <div class="css-cell">
+        <div class="rainbow-container">
+            <div class="rainbow"></div>
+        </div>
+    </div>
+    <h4>7.夜晚</h4>
+    <div class="css-cell">
+        <div class="starry-container">
+            <div class="starry"></div>
+        </div>
+    </div>
+    <h4>8.打雷</h4>
+    <div class="css-cell">
+        <div class="thunder-container">
+            <div class="thunder"></div>
+        </div>
+    </div>
+    <h4>9.下雪</h4>
+    <div class="css-cell">
+        <div class="snowy-container">
+            <div class="snowy"></div>
+        </div>
+    </div>
+
+    <p>实现的html结构也很简单，一些是2层的div</p>
+    <xmp>
+        <div class="css-cell">
+            <div class="sun"></div>
+        </div>
+    </xmp>
+    <p>最多的也只有3层</p>
+    <xmp>
+        <div class="css-cell">
+            <div class="snowy-container">
+                <div class="snowy"></div>
+            </div>
+        </div>
+    </xmp>
+    <p>CSS的代码我就不在这里分别列出来了，具体内容可以查看<a href="index.css">CSS代码</a>，CSS内容都在这个index.css里面</p>
+    <p>在这里我大概说一下实现的原理,这些效果的实现方式核心是对于box-shadow属性的多值使用方法（建议重新看一遍box-shadow的详细介绍）。通过伪元素以及box-shadow画出
+    动画实现的各个组件，并加入关键帧动画，就可以实现具体的动画效果，有兴趣的可以仔细看看每个效果的CSS代码，更好的理解。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

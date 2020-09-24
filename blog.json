@@ -1,0 +1,212 @@
+{
+  "data":[
+    {
+      "id":"23",
+      "title": "我所知道的所有inline-block不显示间隔方法",
+      "date": "12 Apr 2018",
+      "url":"blog/2018/4/inline-block/",
+      "img":"blog/2018/4/inline-block/imgs/1.jpg",
+      "tag": "CSS-HTML",
+      "text": "inline-block相对于浮动是比较方便的一个行内排序方法，但是inline-block因为空格的存在，是会有一点间隔的，之前我知道几个方法能去掉"
+    },
+    {
+      "id":"22",
+      "title": "js设计模式学习-1",
+      "date": "06 Mar 2018",
+      "url":"blog/2018/3/js-design-patterns-part1/",
+      "img":"blog/2018/3/js-design-patterns-part1/imgs/1.jpg",
+      "tag": "JS",
+      "text": "对于js面向对象编程经验基本暂无的我，得改变一下传统的面向过程编程的思路，开始尝试面对对象的编程方式。因自己的经验不足，这里仅当做自己的记录以及巩固，不作教程和分享。"
+    },
+    {
+      "id":"21",
+      "title": "记这一段小小的失落",
+      "date": "02 Mar 2018",
+      "url":"blog/2018/3/first-accost/",
+      "img":"blog/2018/3/first-accost/imgs/1.jpg",
+      "tag": "历程",
+      "text": "怀揣着不留遗憾的想法，冲动了一把。结局并没有我想象中的那么完美，甚至连好都算不上，无奈何只能放手。自此，满满的失落便不请自来，怪我太在意，也怪我太冲动。"
+    },
+    {
+      "id":"20",
+      "title": "CSS和JavaScript的编码规范",
+      "date": "23 Feb 2018",
+      "url":"blog/2018/2/standard/",
+      "img":"blog/2018/2/standard/imgs/1.jpg",
+      "tag": "CSS-JS",
+      "text": "CSS和JavaScript的编码对于不同的人来说可能都有不同的个人习惯和标准，这个东西没有一个标准答案，不同的公司可能都有自己的编码规范"
+    },
+    {
+      "id":"19",
+      "title": "在下所知道的所有水平垂直居中办法",
+      "date": "19 Jan 2018",
+      "url":"blog/2018/1/vertical-center/",
+      "img":"blog/2018/1/vertical-center/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "居中是前端开发时候非常常见的需要之一，水平居中的解决办法相对比较简单，垂直居中相对的办法各人可能都有常用的办法"
+    },
+    {
+      "id":"18",
+      "title": "CSS3实现的天气预报效果",
+      "date": "12 Jan 2018",
+      "url":"blog/2018/1/css3-weather/",
+      "img":"blog/2018/1/css3-weather/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "好吧，离上次更新博客已经过去2个月了，最近项目进展一直很忙，而且处于对新框架的不断学习当中，这类的学习的过程学到的东西"
+    },
+    {
+      "id":"17",
+      "title": "offset-path控制图形沿不规则路线移动",
+      "date": "02 Nov 2017",
+      "url":"blog/2017/11/offset-path/",
+      "img":"blog/2017/11/offset-path/imgs/1.jpg",
+      "tag": "SVG",
+      "text": "临近双11的日子，各位小伙伴们的购物车里是否已经躺好了很多即将收入囊中的东西，恭喜你，下个月的工资马上就要清零了。我也挡不住诱惑"
+    },
+    {
+      "id":"16",
+      "title": "台风天办公室断电之后…",
+      "date": "16 Oct 2017",
+      "url":"blog/2017/10/typhoon-outage-eassay/",
+      "img":"blog/2017/10/typhoon-outage-eassay/imgs/1.jpg",
+      "tag": "随笔",
+      "text": "周一的日子，浑浑噩噩的上午，办公室突然的一暗，脑子在经过2秒的思考之后得出一个结论--停电了。我不禁有些诧异，正处于市中心的"
+    },
+    {
+      "id":"15",
+      "title": "CSS实现的水波荡漾效果",
+      "date": "13 Oct 2017",
+      "url":"blog/2017/10/Water-waves/",
+      "img":"blog/2017/10/Water-waves/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "国庆中秋双节8天假期过后,人又从慵懒的假期转变成工作的状态，就这样到了第一个星期的周五，突然就不想工作了，还是找点内容写个博客。"
+    },
+    {
+      "id":"14",
+      "title": "CSS3中的一些冷门属性",
+      "date": "29 Sept 2017",
+      "url":"blog/2017/9/css3-detail/",
+      "img":"blog/2017/9/css3-detail/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "对于知识的全面了解是一个程序员的优良品质，CSS对于我们前端来说是最常见的一种语言。但是这种常见的语言在不同的人手里"
+    },
+    {
+      "id":"13",
+      "title": "CSS3 Shapes的应用",
+      "date": "28 Sept 2017",
+      "url":"blog/2017/9/css3-Shapes/",
+      "img":"blog/2017/9/css3-Shapes/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "项目到了收尾阶段，该修改的bug什么也都已经改好，也算有空可以提升一下自己。前几天加的一个前端技术交流QQ群，发现现在的应届生似乎都"
+    },
+    {
+      "id":"12",
+      "title": "canvas学习-part1",
+      "date": "21 Sept 2017",
+      "url":"blog/2017/9/canvas-study-part1/",
+      "img":"blog/2017/9/canvas-study-part1/imgs/1.jpg",
+      "tag": "CANVAS",
+      "text": "又是忙碌的一个月，作为项目中唯一的一个前端，每天都在各种调页面，调问题，写js功能代码…,ie8的浏览器要求也注定页面做"
+    },
+    {
+      "id":"11",
+      "title": "人生如《围城》",
+      "date": "27 Aug 2017",
+      "url":"blog/2017/8/weicheng/",
+      "img":"blog/2017/8/weicheng/imgs/1.jpg",
+      "tag": "读书",
+      "text": "今天刚看完了《围城》，经典的确不愧是经典，相对较这段时间看过的几本书，这本书给我的触动很大，当然就有很多东西想要分享一下。"
+    },
+    {
+      "id":"10",
+      "title": "象山两日游-DAY2",
+      "date": "20 Aug 2017",
+      "url":"blog/2017/8/xiangshan-travelp-day2/",
+      "img":"blog/2017/8/xiangshan-travelp-day2/imgs/1.jpg",
+      "tag": "旅行",
+      "text": "第二天一大早，就启程赶往象山影视城。象山影视城算是象山的招牌，来象山肯定是要来影视城看看玩玩，这边拍摄过很多的电影电视剧，我也是想来看看这些影视剧的取景场景。"
+    },
+    {
+      "id":"9",
+      "title": "象山两日游-DAY1",
+      "date": "20 Aug 2017",
+      "url":"blog/2017/8/xiangshan-travelp-day1/",
+      "img":"blog/2017/8/xiangshan-travelp-day1/imgs/1.jpg",
+      "tag": "旅行",
+      "text": "周五小伙伴们就突发奇想的想来场说走就走的旅行，考虑了一下，决定去象山玩两天。周五晚上开始做攻略，查路线，这样的旅行还是太着急，到晚上12点多才订到酒店。下次还是应该早做准备，尽早安排。"
+    },
+    {
+      "id":"8",
+      "title": "巧用boder-width宽度",
+      "date": "17 Aug 2017",
+      "url":"blog/2017/8/boder-width/",
+      "img":"blog/2017/8/boder-width/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "boder-width在平时的使用当中，都是给元素添加不同颜色，不同宽度的边框线来使当前元素和其他的元素区分开来。但是boder-width还有一些不为人知的属性，能发挥神奇的功能。"
+    },
+    {
+      "id":"7",
+      "title": "《战狼II》观后感",
+      "date": "13 Aug 2017",
+      "url":"blog/2017/8/Wolf-Warriors/",
+      "img":"blog/2017/8/Wolf-Warriors/imgs/1.jpg",
+      "tag": "电影",
+      "text": "关于这部电影，由于我曾经看过个人感觉很僵硬的战狼1，所以我其实对这个第二部的印象不太好。奈何微博，新闻上一致的好评，加上我朋友圈里各种观影过后的赞美之词"
+    },
+    {
+      "id":"6",
+      "title": "关于我所遇到的兼容ie8的问题总结",
+      "date": "12 Aug 2017",
+      "url":"blog/2017/8/ie8-compatible/",
+      "img":"blog/2017/8/ie8-compatible/imgs/1.jpg",
+      "tag": "CSS-JS",
+      "text": "这周新开始了一个项目，要求前端页面对于浏览器的兼容最低要到ie8。这么几年过去，重新又回到ie8的要求，我的技术提升了很多，已经可以从整体上去看待这个项目的开发。"
+    },
+    {
+      "id":"5",
+      "title": "关于救赎:读《追风筝的人》读后感",
+      "date": "08 Aug 2017",
+      "url":"blog/2017/8/The-Kite-Runner/",
+      "img":"blog/2017/8/The-Kite-Runner/imgs/1.jpeg",
+      "tag": "读书",
+      "text": "上周周五回家的公交车上，鬼使神差的脑子里突然想买个kindle来看书。考虑了一路，后面还是果断入手了一个kpw。以前虽然也看书，但是毕竟纸质书的价格摆在那边。"
+    },
+    {
+      "id":"4",
+      "title": "关于CSS的@AT规则的总结",
+      "date": "04 Aug 2017",
+      "url":"blog/2017/8/css-at/",
+      "img":"blog/2017/8/css-at/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "我要说at-rules或者AT规则，可能很多人没听过，但是大家一定都见过在CSS中字符@加一些关键词的用法，这就是at-rules。这个规则数量也不多，我在这边总结一下。"
+    },
+    {
+      "id":"3",
+      "title": "用省略号代替溢出文本的各情况总结",
+      "date": "03 Aug 2017",
+      "url":"blog/2017/8/css-omit-test/",
+      "img":"blog/2017/8/css-omit-test/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "写技术性的文章时苦于没有好看到的相关图片，为了维持这个博客外观上的逼格，只能放一些无关的但是自己比较喜欢的图片。言归正传，今天要说的是用省略号代替溢出文本的情况。"
+    },
+    {
+      "id":"2",
+      "title": "有方向的hover效果",
+      "date": "02 Aug 2017",
+      "url":"blog/2017/8/hover-direction/",
+      "img":"blog/2017/8/hover-direction/imgs/1.jpg",
+      "tag": "CSS",
+      "text": "昨天才完成的博客模板，今天要是不写个一篇博客，感觉真说不过去。想了想，找了一个之前自己弄得，还挺有意思小玩意来分享出来。"
+    },
+    {
+      "id":"1",
+      "title": "我的独立博客全新上线了！",
+      "date": "01 Aug 2017",
+      "url":"blog/2017/8/new-blog-begin/",
+      "img":"blog/2017/8/new-blog-begin/imgs/1.jpg",
+      "tag": "历程",
+      "text": "想了几天，还是把原来的网站的构想全部推翻了，一个网站的内容太大，我个人实在支撑不了。最后还是选择了一个大众的题材--博客。"
+    }
+  ]
+}
+

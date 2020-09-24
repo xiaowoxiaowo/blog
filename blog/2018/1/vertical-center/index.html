@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>在下所知道的所有水平垂直居中办法</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">在下所知道的所有水平垂直居中办法</div>
+        <div class="date">19 January 2018</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>居中是前端开发时候非常常见的需要之一，水平居中的解决办法相对比较简单，垂直居中相对的办法各人可能都有常用的办法。这里列一下我现在所知道的
+    实现水平垂直居中的一些办法。</p>
+    <p2>lineheight</p2>
+    <p2>负margin</p2>
+    <p2>margin auto</p2>
+    <p2>calc</p2>
+    <p2>transform</p2>
+    <p2>table</p2>
+    <p2>css-table</p2>
+    <p2>flex</p2>
+    <p>下面一个个简单介绍一下</p>
+    <h4>1. lineheight</h4>
+    <p>lineHeight属性应该都知道，但是这个属性只能设置字体或者是span等行内元素。如果子元素是块状元素就无法生效了。</p>
+    <xmp>
+        .parent{
+            line-height: 高度;
+            text-align: center;
+        }
+        .child{
+            必须是span这类的行内元素
+        }
+    </xmp>
+    <p>个人觉得这个办法用处不大，只是对于字体垂直居中有用</p>
+    <h4>2. 负margin</h4>
+    <p>负margin的意思是先把left或者top这类元素设置50%，再设置负的margin值达到居中的目的。</p>
+    <xmp>
+        .parent{
+            如果下面的child元素的position设置为absolute，则父元素必须设置position: relative定位
+        }
+        .child{
+            position: relative; 必须设置为relative或者absolute，不然left这类属性不会生效
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;这个负值为本元素宽度的一半
+            margin-top: -50px;
+        }
+    </xmp>
+    <p>这类方法兼容性比较好，低版本ie也可以生效，缺点是负margin的值是一个固定的值，不会随着元素宽度变化而变化。</p>
+    <h4>3. margin auto</h4>
+    <p>这类方法需要对于页面的流体性质有比较好的理解。我大概介绍一下流体性质的原理，如果一个块级元素没有设置宽度自身是存在流体性的，它会自动
+        适应并充满父级的空间，而且不会超出。但是如果设置了宽度，这种流体性质就会被破坏了，就不会自己适应了。但是如果这个元素是绝对定位元素，这就
+        和正常的流拥有一样的属性。流体元素填充规则如下：</p>
+    <p>1.如果一侧定值，一侧auto，auto为剩余空间大小</p>
+    <p>2.如果两侧均是auto, 则平分剩余空间</p>
+    <p>具体细节在这边就不展开了，想了解的同学可以看看张鑫旭老师的这篇文章<a href="http://www.zhangxinxu.com/wordpress/?p=1152">页面重构“鑫三无准则” 之“无宽度”准则</a>
+        ，上面有非常详细的介绍。</p>
+    <xmp>
+        .parent{
+            position: relative;
+        }
+        .child{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </xmp>
+    <p>个人比较推荐的一个方法，兼容性良好，还可以自适应宽度变化</p>
+    <h4>4. calc</h4>
+    <p>这类方法用的是calc的计算属性</p>
+    <xmp>
+        .parent{
+            如果下面的child元素的position设置为absolute，则父元素必须设置position: relative定位
+        }
+        .child{
+            position: relative; 必须设置为relative或者absolute，不然left这类属性不会生效
+            top: calc(50% - 50px); 减去的这个值为本元素宽度的一半
+            left: calc(50% - 50px);
+        }
+    </xmp>
+    <p>跟方法2差不多的意思，不过calc只有ie10+才能良好支持</p>
+    <h4>5. transform</h4>
+    <p>这类方法用的是transform的2d横向移动</p>
+    <xmp>
+        .parent{
+            如果下面的child元素的position设置为absolute，则父元素必须设置position: relative定位
+        }
+        .child{
+            position: relative; 必须设置为relative或者absolute，不然left这类属性不会生效
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </xmp>
+    <p>这方法原理跟2一样，不过可以自适应元素的宽度，不需要计算具体的值。不过得ie10+浏览器才能兼容</p>
+    <h4>6. table</h4>
+    <p>table属性就是画一个table，tr，td并通过vertical-align: middle实现垂直居中，此方法就不介绍了，DOM层需要太多，不好用。</p>
+    <h4>7. css-table</h4>
+    <p>此方法原理是设置div的display属性实现table的效果</p>
+    <xmp>
+        .parent{
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .child{
+            display: inline-block;这个只有在行内元素的时候才能实现，但我们要设置高度和宽度，所以用inline-block这个属性
+        }
+    </xmp>
+    <h4>8. flex</h4>
+    <p>这方法是通过flex布局在实现居中</p>
+    <xmp>
+        .parent{
+            display: flex;
+            justify-content: center; 水平居中
+            align-items: center;     垂直居中
+        }
+        .child{
+        }
+    </xmp>
+    <p>flex这个两个属性其实本质上实现的不是居中，而是子元素的排列方法，是居中排列还是向左或向右排列，但是当子元素只有一个的时候，就实现了居中效果。实际
+        使用的话，flex在ie浏览器下的差兼容性需要考虑。比较适合移动端的使用。</p>
+
+    <h4>最后再说个很牛逼的实现垂直居中的办法</h4>
+    <xmp>
+        .parent{
+            writing-mode: vertical-rl;
+        }
+        .child{
+            margin: auto;
+        }
+    </xmp>
+    <p>writing-mode属性真的很少用，这个属性一般是用来实现文字可以竖着呈现的效果的。通过设置这个属性的排列方向，margin:auto就从水平居中，变成了垂直居中了。</p>
+
+    <p>前端的道路，任重道远呀！</p>
+
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

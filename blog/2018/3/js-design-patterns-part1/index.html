@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>js设计模式学习-1</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">js设计模式学习-1</div>
+        <div class="date">06 March 2018</div>
+        <a class="tag" href="../../../../classify/js/"><span>JS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>对于js面向对象编程经验基本暂无的我，得改变一下传统的面向过程编程的思路，开始尝试面对对象的编程方式。因自己的经验不足，这里仅当做自己的记录以及巩固，不作教程和分享。</p>
+    <p>这些都是本人学习<a class="douban" href="https://book.douban.com/subject/26589719/">javaScript设计模式</a>这本书的笔记</p>
+    <p>学习这东西前，必须得对js有一定的了解，这里的了解不是指只是前端页面的那些api，而是比如原型，原型链这些比较深入的js知识内容，不然抱着看不懂的姿态去学，真的效果很差。</p>
+    <p2>第一章:灵活的JavaScript</p2>
+    <p>用对象来收编变量</p>
+    <xmp>
+        Var CheckObject = {
+        checkName : function(){
+        //验证姓名
+        },
+        checkEmail : function(){
+        //验证邮箱
+        },
+        checkPassword : function(){
+        //验证密码
+        }
+        }
+    </xmp>
+    <p>对类实例化(但是这个方法消耗比较大)</p>
+    <xmp>
+        Var CheckObject = function() {
+        this.checkName  =  function(){
+        //验证姓名
+        },
+        this.checkEmail  =   function(){
+        //验证邮箱
+        },
+        this.checkPassword  =  function(){
+        //验证密码
+        }
+        }
+    </xmp>
+    <p>依赖prototype原型创建方法</p>
+    <xmp>
+        Var CheckObject = function() {};
+        CheckObject.prototype  =  {
+        checkName : function(){
+        //验证姓名
+        },
+        checkEmail : function(){
+        //验证邮箱
+        },
+        checkPassword : function(){
+        //验证密码
+        }
+        }
+    </xmp>
+    <p>链式调用</p>
+    <xmp>
+        Var CheckObject = function() {};
+        CheckObject .prototype  =  {
+        checkName : function(){
+        //验证姓名
+        return this;
+        },
+        checkEmail : function(){
+        //验证邮箱
+        return this;
+        },
+        checkPassword : function(){
+        //验证密码
+        return this;
+        }
+        }
+        Var a = new CheckObject();
+        a.checkName().checkEmail().checkPassword();
+    </xmp>
+    <p2>第二章：面向对象编程</p2>
+    <p>2.2 封装</p>
+    <p>属性和方法封装</p>
+    <xmp>
+        var Book = function(id){
+        //私有属性
+        var num=2;
+        //私有方法
+        function checkId(){};
+        //特权方法:指一些能够获取或者改变当前对象私有属性的方法
+        This.getnum = function(){};
+        //对象共有属性
+        this.id=id;
+        //对象共有方法
+        This.copy = function(){};
+        }
+    </xmp>
+    <p>通过闭包实现,通过这样创建，属性和方法都处于一个整体。</p>
+    <xmp>
+        var Book = (function(id){
+        //静态私有属性
+        var num=2;
+        //静态私有方法
+        function checkId(){};
+        //创建类
+        function _book(id){
+        对象的内容
+        }
+        _book.prototype ={
+        }
+        return  _book;
+        })()
+    </xmp>
+    <p>安全模式--防止忘记new</p>
+    <xmp>
+        var Book = function(id){
+        If(this instanceof Book){
+        初始化类
+        }else{
+        return new Book(title,time,type);
+        }
+        }
+    </xmp>
+    <p>2.3 继承</p>
+    <p>2.3.1 类式继承</p>
+    <xmp>
+        function fu(){
+        this.fuValue = true;
+        }
+        fu.prototype.getfu = function(){
+        return this.fuValue;
+        }
+        function zi(){
+        this.zi = false;
+        }
+        zi.prototype = new fu();
+        var s = new zi();
+        s.getfu();
+    </xmp>
+    <p>Instanceof可以判断当前对象是否是某个类的实例，但是不能判断是否继承。如上例子所示，只能说zi.prototype是父类的实例。上面的方法有缺点，如果
+        父辈的共有属性被某一个子类修改，所有继承的子类都会发生变化。（这个特性说不定可以适用到一些特殊的场景当中，留个心记忆一下）</p>
+    <p>2.3.2 构造函数继承,只列出最关键的代码</p>
+    <xmp>
+        function zi(){
+        fu.call(this);
+        }
+    </xmp>
+    <p>创建的每个实例都是单独一份，违背了代码复用的原则</p>
+    <p>2.3.3 组合继承,将优点结合一下，在上例的基础上，在加一个原型的继承</p>
+    <xmp>
+        zi.prototype = new fu();
+    </xmp>
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

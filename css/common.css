@@ -1,0 +1,526 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Exo,'-apple-system','Open Sans',HelveticaNeue-Light,'Helvetica Neue Light','Helvetica Neue','Hiragino Sans GB','Microsoft YaHei',Helvetica,Arial,sans-serif;
+}
+html{
+    font-size: 625%;
+}
+html,body{
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+
+header{
+    width: 100%;
+    height: 382px;
+    background: url("../imgs/main/title2.png") no-repeat 50% 50% / cover;
+    position: relative;
+}
+header.ie_pic{
+    background: url("../imgs/main/title2.png") no-repeat 50% 50% / cover;
+
+}
+header .head_gif{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("../imgs/main/title2.gif") no-repeat 50% 50% / cover;
+    display: none;
+}
+header > h2{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 90px;
+    color: white;
+    font-size: 0.38rem;
+    font-weight: lighter;
+    text-shadow: 0 1px 1px #595959;
+}
+header > h3{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 60px;
+    color: white;
+    font-size: 0.2rem;
+    font-weight: lighter;
+    text-shadow: 0 1px 1px #595959;
+    letter-spacing: 0.008rem;
+}
+header > *:hover{
+    color: #efefef;
+    text-shadow: 0 1px 1px #000;
+    cursor: pointer;
+}
+header > .icon{
+    width: 0.5rem;
+    height: 0.5rem;
+    background: url("../imgs/main/woniu.png") no-repeat 0 0 /100% 100%;
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 70px;
+    text-align: center;
+    line-height: 0.6rem;
+    color: #ccc;
+    font-weight: bold;
+}
+main{
+    position: relative;
+    width: 100%;
+}
+main > article{
+    position: relative;
+    left: 50%;
+    margin-top: 25px;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 920px;
+    min-height: 250px;
+    font-size: 12px;
+}
+@media (max-width:768px){
+    header{
+        height: 422px;
+    }
+    main > article{
+        width: 100%;
+    }
+    header > h2{
+        bottom: 160px;
+    }
+    header > h3{
+        bottom: 130px;
+    }
+}
+@media (max-width:500px){
+    main > article{
+        margin-top: 0px;
+        /*margin-bottom: 230px;*/
+    }
+    main > article + article{
+        margin-top: -4px;
+    }
+    main > article > .pic img{
+        -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgb(250, 250, 250)));
+    }
+}
+
+main > article > .pic{
+    width: 100%;
+    height: 620px;
+    cursor: pointer;
+}
+main > article > .pic img{
+    width: 100%;
+    height: auto;
+}
+main > article > .text{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent,#000);
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+main > article .title{
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    font-weight: normal;
+    font-size: 0.34rem;
+    color: white;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    display: block;
+    cursor: pointer;
+}
+main > article .title:hover{
+    color: #efefef;
+    text-shadow: 0 1px 1px #000;
+}
+main > article .date{
+    font-size: 0.17rem;
+    color: white;
+    float: left;
+    margin-right: 10px;
+}
+main > article .tag_a{
+    float: left;
+}
+main > article .tag{
+    padding: 1px 10px;
+    color: white;
+    font-size: 0.14rem;
+    background:rgba(255,255,255,.3);
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+main > article .tag:hover{
+    background:rgba(255,255,255,.2);
+}
+main > article .mini_text{
+    position: absolute;
+    top:105px;
+    width: calc(100% - 100px);
+    height: 35px;
+    font-size: 0.14rem;
+    text-align: justify;
+    color: white;
+    overflow: hidden;
+    /*font-family: HelveticaNeue-UltraLight,'Helvetica Neue UltraLight';*/
+    display: none;
+}
+main > article .read_btn{
+    position: absolute;
+    top:160px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.14rem;
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+    cursor: pointer;
+    display: none;
+}
+main > article .read_btn:hover{
+    color: black;
+    background: white;
+}
+nav{
+    position: relative;
+    width: 150%;
+    height:120px;
+    margin-top: -2px;
+    background: white;
+}
+nav > span{
+    position: absolute;
+    height: 0.3rem;
+    max-width: 3.4rem;
+    left: 33.3%;
+    top:50%;
+    transform: translateX(-50%);
+}
+nav > span span{
+    font-size: 0.14rem;
+    color: #999;
+    padding: 0.06rem 0.12rem;
+    border-radius: 0.04rem;
+    cursor: pointer;
+    float: left;
+}
+nav .page{
+    background: rgba(59,59,59,.7);
+    color: white;
+}
+nav .page:hover{
+    background: rgba(0,0,0,.5);
+}
+nav .page.active{
+    position: relative;
+    background: rgba(0,0,0,.5);
+    top: 1px;
+    box-shadow: 1px 1px 3px rgb(153, 153, 153) inset;
+}
+nav .page a{
+    color: white;
+}
+footer{
+    position: relative;
+    width: 100%;
+    height: 0.44rem;
+    border-top:1px solid #ccc;
+    text-align: center;
+    font-size: 0.16rem;
+    box-sizing: border-box;
+    padding-top: 0.12rem;
+    background: white;
+}
+.top{
+    position: fixed;
+    right: -70px;
+    bottom:50px;
+    width: 70px;
+    height: 70px;
+    transform: translateX(50%);
+    background: url("../imgs/main/top.png") no-repeat 50% 50% / 70px 70px;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+         -o-transition: opacity 1s;
+            transition: opacity 1s;
+}
+.top.active{
+    bottom: 50px;
+    right: 7%;
+    opacity: 1;
+    -webkit-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+         -o-transition: opacity 1s;
+            transition: opacity 1s;
+}
+@media (max-width:500px){
+    header > h2{
+        font-size: 0.3rem;
+        bottom: 230px;
+    }
+    header > h3{
+        font-size: 0.2rem;
+        bottom: 200px;
+    }
+    main > article > .text{
+        /*bottom: -230px;*/
+        top:-4px;
+        position: relative;
+        height: 230px;
+        background: rgba(0,0,0,0.9);
+        padding-left: 50px;
+        padding-right: 50px;
+        box-sizing: border-box;
+    }
+    main > article .title{
+        position: absolute;
+        top:65px;
+        width: calc(100% - 100px);
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.2rem;
+        cursor: pointer;
+    }
+    main > article .date{
+        font-size: 0.16rem;
+        color: white;
+        position: absolute;
+        top:30px;
+    }
+    main > article .tag{
+        display: none;
+    }
+    main > article .mini_text{
+        display: block;
+    }
+    main > article .read_btn{
+        display: block;
+    }
+}
+
+/*****************************子页面样式*****************************/
+.page_head{
+    width: 100%;
+    height: 5.48rem;
+    position: relative;
+}
+.page_head::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5.48rem;
+    background: rgba(0,0,0,0.4);
+    z-index: 10;
+}
+.page_head .box{
+    position: absolute;
+    width: 77%;
+    max-width: 9.28rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+    z-index: 11;
+}
+.page_head .home{
+    position: absolute;
+    font-size: 0.12rem;
+    line-height: 0.40rem;
+    padding: 0rem 0.28rem;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.page_head .title{
+    position: relative;
+    width: 100%;
+    min-height: 110px;
+    margin-top: 150px;
+    font-weight: normal;
+    font-size: 0.38rem;
+    color: white;
+    display: block;
+}
+.page_head .date{
+    position: relative;
+    width: 100%;
+    height: 20px;
+    font-size: 0.15rem;
+    color: white;
+    display: block;
+}
+.page_head .tag{
+    font-size: 12px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.page_head .tag > span{
+    padding: 1px 10px;
+    color: white;
+    font-size: 0.14rem;
+    background:rgba(255,255,255,.3);
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.page_head .tag > span:hover{
+    background:rgba(255,255,255,.2);
+}
+.content{
+    width: 77%;
+    max-width: 9.28rem;
+    margin: 0 auto;
+    position: relative;
+}
+.content p{
+    font-size: 0.16rem;
+    line-height: 0.28rem;
+    margin-top: 0.22rem;
+    padding: 0 25px;
+    color: #333;
+    text-align: justify;
+    text-indent: 2em;
+}
+.content ul{
+    font-size: 0.16rem;
+    line-height: 0.28rem;
+    margin-top: 0.22rem;
+    padding: 0 25px;
+    color: #333;
+    text-align: justify;
+    text-indent: 2em;
+    margin-left: 20px;
+}
+.content li{
+    font-size: 0.16rem;
+    line-height: 0.28rem;
+    color: #333;
+    text-align: justify;
+    list-style: none;
+    margin-left: -20px;
+    background: url(../imgs/link/dian.png) no-repeat 0 12px / 5px 5px;
+}
+.content p1{
+    display: block;
+    font-size: 0.18rem;
+    line-height: 0.28rem;
+    margin-top: 0.22rem;
+    padding: 0 25px;
+    color: #333;
+    font-weight: bold;
+    text-align: justify;
+}
+.content p2{
+    display: block;
+    font-size: 0.18rem;
+    line-height: 0.28rem;
+    margin-top: 0.05rem;
+    padding: 0 25px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+.content img.pic{
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top: 0.1rem;
+}
+.content img {
+    width: 50%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.1rem;
+}
+.content a{
+    color: rgb(84, 181, 219);
+    padding: 0 0.05rem;
+}
+.content a:hover{
+    color: rgb(39, 147, 55);
+}
+.content blockquote {
+    font-size: 0.16rem;
+    font-style: italic;
+    line-height: 0.4rem;
+    color: #333;
+    min-height: 0.4rem;
+    border-left: 3px solid #ccc;
+    display: block;
+    width: calc(100% - 200px);
+    margin-left: 50px;
+    margin-top: 0.22rem;
+    padding: 0 25px;
+    background: rgba(222,222,222,0.5);
+    text-align: justify;
+}
+.content h3 {
+    margin: 30px 0 20px 25px;
+    font-size: 0.3rem;
+}
+.content h4 {
+    margin: 30px 0 20px 25px;
+    font-size: 0.22rem;
+}
+.content xmp {
+    font-size: 0.18rem;
+    background: black;
+    color: white;
+    padding: 0 15px;
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.content hr {
+   margin-top: 20px;
+}
+.content div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#uyan_frame{
+    margin-top: 10px;
+}
+/*暂时有7个标签可以用，p段落,p1加粗段落,p2加粗段落居中,img图片,a超链接,blockquote引用的话或者名言,h4标题,<hr/>分割线,<xmp></xmp>显示代码文本*/
+@media (max-width:500px){
+    .page_head{
+        height: 3.2rem;
+    }
+    .page_head::after{
+        height: 3.2rem;
+    }
+    .page_head .title{
+        min-height: 80px;
+        margin-top: 80px;
+        font-size: 0.24rem;
+    }
+    .content{
+        width: 100%;
+    }
+    .content xmp {
+        font-size: 0.15rem;
+    }
+}
+@media (max-width:768px) {
+    .content img {
+        width: 100%;
+    }
+}

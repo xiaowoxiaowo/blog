@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>canvas学习-part1</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <script src="../../../../plugins/js/jquery.js"></script>
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 50% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">canvas学习-part1</div>
+        <div class="date">21 September 2017</div>
+        <a class="tag" href="../../../../classify/canvas/"><span>CANVAS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p> 又是忙碌的一个月，作为项目中唯一的一个前端，每天都在各种调页面，调问题，写js功能代码…,ie8的浏览器要求也注定页面做不了那种炫酷的效果，只是追求兼容，功能的
+        页面的样式能够正确的出来，以及个人追求上加了一些简单的动效（js实现）。不过也是第一次写了几个js插件去让后台的开发去调用，虽然这几个插件只能实现这个项目中
+        需要用到的单一功能，但也算是一点小小的学习。</p>
+    <p> 这次也是我一年之后，再一次的做ie8的前端项目，非常庆幸跟去年的自己相比较有了巨大的提高，前几天微博上看到一句话，非常受教，我也非常认同。这句话大概的意思
+        是如果你看到你去年写的代码的时候，你不感到羞愧，那你就不适合当程序员。我觉得，这对于工作前几年的人来说很简单，因为很多都不会，所以都需要学习，进步很大。但是
+        但是对于已经工作好多年了的人来说，就不是那么简单了，毕竟考到90分容易，但要是想考满分100分，就很难了。但对于宁波，这个互联网还不发达的城市来说，可能大部分的人
+        在工作5年之后，或许就已经在原地踏步了。我现在经常会自我提升，希望以后的我也是这样。</p>
+    <p> 言归正传，今天写的是canvas的东西，这东西我很早就知道了，但是一直都没有认真去学过，因为这东西对我平时工作来说，可能基本不会有什么帮助，但是我个人很喜欢，因为
+        这东西做的有些炫酷的效果让我很心动，我可能不会学那么深入，但是想要大致的了解并可以应用一下。</p>
+    <p> canvas是 HTML5 新增的元素，可用于通过使用JavaScript中的脚本来绘制图形。例如，它可以用于绘制图形，制作照片，创建动画，甚至可以进行实时视频处理或渲染。虽然是js
+        做的东西，但是可以实现非常炫酷的效果，各种的网页上的粒子效果就是canvas实现出来的。在我个人的理解上，要做出炫酷的效果，得了解各种动画的数学方法，通过数学公式的方法
+        去控制粒子的位置变化。当然，我写的这个应该只是简单的应用，如果想要深入的学习，还是需要花很大的时间和工夫的。</p>
+    <h4>基本用法</h4>
+    <p>介绍一下canvas的基本用法,在html上面，内容很简单，就是一个canvas标签</p>
+    <xmp>
+        <canvas id="canvas" width="100" height="100">></canvas>
+    </xmp>
+    <p>具体的样式都能通过CSS去修改,长度和宽度最好设置在canvas标签上，因为有时候把长宽设置在css会让canvas画面错乱。下面是js的使用方法，对于canvas来说，各种的操作和控制都是在js里进行的。</p>
+    <xmp>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+    </xmp>
+    <p>这两句话是每个canvas都需要的，通过获取canvas元素里的一个叫做 getContext() 的方法,来或得渲染上下文和它的绘画功能。获取之后，你就可以通过ctx这个东西，去画canvas。</p>
+    <h4>1.绘制矩形</h4>
+    <xmp>
+        fillRect(x, y, width, height)
+        绘制一个填充的矩形
+        strokeRect(x, y, width, height)
+        绘制一个矩形的边框
+        clearRect(x, y, width, height)
+        清除指定矩形区域，让清除部分完全透明。
+    </xmp>
+    <xmp>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "rgb(255,201,14)";
+        ctx.fillRect (10, 10, 205, 150);
+        ctx.strokeRect (300, 200, 205, 150);
+    </xmp>
+    <img src="imgs/rect.jpg">
+    <p> 左上方那个是通过fillRect画出来的，右下方这个是通过strokeRect画出来的。跟描述的一样，一个是填充的矩形，一个只是绘制一个边框。x，y属性是相对于canvas原点的距离。canvas默认的
+        原点是canvas的左上角。x是相对于原点的横向距离，y是相对于原点的纵向距离。clearRect也一样，设置x，y和长宽之后，会把这个区域内所有的canvas内容清除掉。
+    </p>
+    <h4>2.绘制路径</h4>
+    <xmp>
+        beginPath()
+        新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。
+        closePath()
+        闭合路径之后图形绘制命令又重新指向到上下文中。
+        stroke()
+        通过线条来绘制图形轮廓。
+        fill()
+        通过填充路径的内容区域生成实心的图形。
+        moveTo(x, y)
+        将笔触移动到指定的坐标x以及y上。
+        lineTo(x, y)
+        绘制一条从当前位置到指定x以及y位置的直线。
+    </xmp>
+    <xmp>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(200,200);
+        ctx.lineTo(300,300);
+        ctx.lineTo(300,100);
+        ctx.fill();
+    </xmp>
+    <img src="imgs/sj.jpg">
+    <p>
+        这是通过画路径画出的一个三角形,beginPath()是在画路径之前必须有的一个属性，相对于一个开关，告诉canvas我现在要画路径了，让它准备好。关于moveTo和lineTo我得好好说下，
+        在用这两个属性之前，我们得先了解canvas画路径的原理，你可以把画路径的canvas当做一个画笔，跟我们在画画的时候一样，canvas也只有一支画笔，它只能在第一个坐标上面画东西。我们
+        在画路径的时候，需要知道两个东西，一个是路径的起始点，一个是路径的结束点。所以我们就需要moveTo和lineTo,moveTo就是告诉canvas让他把画笔放到画布的某一个位置上面，lineTo是
+        告诉canvas让他从当前的画笔所在的点，画一条线到lineTo指定的某一个位置。你必须搞清楚，canvas画图的原理，不然在后面设计canvas动画的时候，肯定会出现画面的错乱。
+    </p>
+    <p>stroke()和fill()跟之前画矩形一样，一个是填充内容，一个只是描边。注意:当你调用fill()函数时，所有没有闭合的形状都会自动闭合，所以你不需要调用closePath()函数。但是调用stroke()
+        时不会自动闭合。</p>
+    <h4>3.绘制圆弧</h4>
+    <xmp>
+        arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。
+        arcTo(x1, y1, x2, y2, radius)
+        根据给定的控制点和半径画一段圆弧，再以直线连接两个控制点
+    </xmp>
+    <xmp>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(350,250,200,0,Math.PI*2,true);
+        ctx.stroke();
+    </xmp>
+    <img src="imgs/cir.jpg">
+    <p>圆弧的用法跟之前的差不多，只是稍微的多一些,设置跟原点距离的x,y,圆的半径,起始角度，以及结束角度。如果设置startAngle为0,默认是在圆的右端点开始画圆,anticlockwise设置画圆的顺逆时针方向。
+    </p>
+    <h4>4.二次贝塞尔曲线及三次贝塞尔曲线</h4>
+    <xmp>
+        quadraticCurveTo(cp1x, cp1y, x, y)
+        绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。
+        bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+        绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。
+    </xmp>
+    <p>贝塞尔曲线也算是动画里面常用的方法，但是这个方法不会给我们直观的视觉展示，所以让我们有点难以理解，一言半句很难说清楚。推荐张鑫旭大神的一篇文章,虽然是讲svg的，但是里面对于贝塞尔曲线的
+        轨迹的解释非常通俗易懂，推荐大家看下<a href="http://www.zhangxinxu.com/wordpress/2014/06/deep-understand-svg-path-bezier-curves-command/">深度掌握SVG路径path的贝塞尔曲线指令</a>。</p>
+
+    <p>常用的一些画图形的方法就是这些，一起学习进步。</p>
+
+
+
+
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+<script src="../../../../plugins/js/jquery.lazyload.js"></script>
+</body>
+</html>

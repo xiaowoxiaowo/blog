@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>用省略号代替溢出文本的各情况总结</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <script src="../../../../plugins/js/jquery.js"></script>
+</head>
+<style>
+    .dh{
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        width: 100px;
+        font-size: 0.16rem;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+    }
+    .dh1{
+        width: 130px;
+        height: 50px;
+        font-size: 0.16rem;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+    }
+
+</style>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 50% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">用省略号代替溢出文本的各情况总结</div>
+        <div class="date">03 August 2017</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>写技术性的文章时苦于没有好看到的相关图片，为了维持这个博客外观上的逼格，只能放一些无关的但是自己比较喜欢的图片。</p>
+    <p>言归正传，今天要说的是用省略号代替溢出文本的情况。相信这个情况基本上都碰到过，我来一个一个介绍并总结一下。</p>
+    <h4>1.单行文本省略</h4>
+    <p>这个情况应该是最常见的一种，单行的文本在超出的时候用省略号来代替。效果如下所示：</p>
+    <div class="dh">这是一个测试的例子</div>
+    <p>CSS代码也很简单，就是如下3行</p>
+    <xmp>
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+    </xmp>
+    <p>这个需要注意的地方就是必须设置一个具体的宽度，不管是px，%，rem或者是别的，必须设置一个。</p>
+    <h4>2.多行文本省略</h4>
+    <p>先来看看效果:</p>
+    <div class="dh1">这是一个测试的例子这是一个测试的例子这是一个测试的例子</div>
+    <p>这种情况下就不能用刚才CSS的方法去省略，因为刚才设置了white-space:nowrap;强制不换行。CSS也有实现多行的办法，比如下面这个:</p>
+    <xmp>
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    </xmp>
+        <p>不说各种-webkit前缀让你感觉到的多浏览器不兼容，还有那个数字3，你也能看出来，这个只能让指定的行数的文本去省略。
+            我个人推荐用jquery.dotdotdot.min.js插件去实现这个效果，只有9k大小，实现方便简单。调用代码就一行</p>
+    <xmp>
+        $('.dh1').dotdotdot({
+        wrap: 'letter'  //注：中文必须改为letter
+        });
+    </xmp>
+    <h4>3.表格内文本省略</h4>
+    <p>对于表格内的文本省略，我们也可以用第一种方法。但是你可以去试试，在添加了CSS之后，表格td内的文本并没有被省略。这是为什么呢?</p>
+    <p>这是因为表格的table-layout默认值是auto，这个意思就是table的宽高取决于其内容的多少。这跟第一个情况下一定要设置一个固定的宽度是一样的，不管是%还是px，我们必须把td的宽度设成一个固定的值，这段省略的CSS才会起效。
+    想想table-layout还有哪些属性，你是不是就知道答案了？是的，table-layout有一个fixed属性，这个属性会让表格的td保持一个相对固定的大小。这时候，省略的CSS就会起作用了。</p>
+    <h4>结语</h4>
+    <p>我暂时就只碰到过这几种省略的场景，可能不一定全，如果你还有碰到别的情况，我希望你可以在下面给我留言。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+<script src="js/jquery.dotdotdot.min.js"></script>
+<script>
+    $('.dh1').dotdotdot({
+        wrap: 'letter'  //注：中文必须改为letter
+    });
+</script>
+</body>
+</html>

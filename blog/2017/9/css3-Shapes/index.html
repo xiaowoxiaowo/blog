@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>CSS3 Shapes的应用</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <script src="../../../../plugins/js/jquery.js"></script>
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 50% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">CSS3 Shapes的应用</div>
+        <div class="date">28 September 2017</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>项目到了收尾阶段，该修改的bug什么也都已经改好，也算有空可以提升一下自己。前几天加的一个前端技术交流QQ群，发现现在的应届生似乎都很
+        牛逼的样子，不说基本的css，js修改样式，react，php，ios，小程序都有所接触，都会。对照了一下自己，发现自己差得不少，今年年初定了
+        几个任务，完成了大部分，但是几个比较重大的任务其实并没有什么进展，惰性真是人类发展的一个重大阻碍。今年当做自己玩乐的最后一年，明年
+        得督促自己，每天积累一些，发展好了自己，我才能去发展一些其它的机遇。</p>
+    <p>CSS Shapes的内容是看了张鑫旭大神的
+        <a href="http://www.zhangxinxu.com/wordpress/2017/09/css-shapes-outside-iphone-x-head/">借助CSS Shapes实现元素滚动自动环绕iPhone X的刘海</a>
+        这篇内容才知道的，张大神真是我辈楷模，对于CSS的知识全面深入一直是让我真心佩服。这篇文章算是对于CSS Shapes的一个简单的介绍，当做自己的学习笔记。
+        话说在前面，现在CSS Shapes的浏览器支持程度很差，大家可以上<a href="http://caniuse.com/">can i use</a>查询一下。在PC端上的项目基本不好使用，
+        大家权当做了解。</p>
+    <p>CSS Shapes其实很简单,在CSS里面的体现其实只有一个shape-outside，不过shape-outside里有不少的属性，相应的使用方法也有所不同。这里有个注意点
+        shape-outside属性要想生效，本身必须需要是浮动float元素。我们先来看一段演示,先了解一下CSS Shapes的具体作用</p>
+    <xmp>
+        <div class="box">
+            <img src="imgs/1.jpg"/>
+            <p>这是一段测试的文字，为了测试这个图片的环绕效果。……</p>
+        </div>
+    </xmp>
+    <img src="imgs/3.jpg">
+    <p>平时我们看到的效果就是这样，因为html标签都是方形的，所以左边的img和右边的p标签都是方形组合。但是如果我们给img标签加上CSS Shapes的效果之后，
+       我们再来看看页面上的样子</p>
+    <xmp>
+        img{
+            float: left;
+            shape-outside: border-box;
+        }
+    </xmp>
+    <img src="imgs/2.jpg">
+    <p>字体围绕着图片排列，是不是效果比刚才的好多了，了解了CSS Shapes的具体作用之后，我们来一个个学习shape-outside的属性。</p>
+    <xmp>
+        /* 关键字值 */
+        shape-outside: none;
+        shape-outside: margin-box;
+        shape-outside: content-box;
+        shape-outside: border-box;
+        shape-outside: padding-box;
+
+        /* 函数值 */
+        shape-outside: inset();
+        shape-outside: circle();
+        shape-outside: ellipse();
+        shape-outside: polygon();
+
+        /* url值 */
+        shape-outside: url(image.png);
+
+    </xmp>
+    <h3>关键字值</h3>
+    <p>关键字值里面的东西很好理解，就是按照不同的box去环绕，不过如果设置了border-radius，不管用哪一个属性，都会按圆角去环绕。只是如果设置了
+       margin或者padding的值，在用相应的box时，会使文字产生一些距离。我们也可以通过shape-margin来控制文字环绕和图片的间距</p>
+    <h3>url值</h3>
+    <p>如果你得到一个透明的PNG或者GIF图片，那么你可以使用alpha通道来定义浮动区域。这个例子只能把页面放到服务器上面测试，本地直接打开页面会报跨域错误！</p>
+    <xmp>
+        shape-outside: url(image.png);
+        shape-image-threshold: 0.0;  //默认属性，如果设置为1.0图片就会文字全覆盖
+    </xmp>
+    <img src="imgs/4.jpg" >
+    <h3>函数值</h3>
+    <p>函数值是CSS Shapes功能最强大的地方，他可以定义很多的形状去让文字环绕。</p>
+    <p1>inset()</p1>
+    <p>inset()函数允许你在浮动区域里边定义一个内部矩形。它的用法跟直接margin和border-radius有点相似。</p>
+    <xmp>
+        shape-outside: inset(10px, 10px, 10px, 10px);
+    </xmp>
+    <xmp>
+        shape-outside: inset(10px);
+    </xmp>
+    <p>上面这两个是一样的，设置了margin的top,right,bottom,left的值。</p>
+    <xmp>
+        shape-outside: inset(1px round 10px);
+    </xmp>
+    <p>round后面的值，跟border-radius是一样的，如果设置了img的border-radius,只要设置好round的值，文字也就能够围绕图片。</p>
+    <p1>circle()</p1>
+    <p>看着英文名就知道这是一个圆形的函数。</p>
+    <xmp>
+        shape-outside: circle(50%);
+    </xmp>
+    <p>上面的代码就是修改圆的半径，如果不加参数，默认值就是50%。</p>
+    <xmp>
+        shape-outside: circle(50% at 10% 10%);
+    </xmp>
+    <p>还可以设置圆的圆心的位置,at后面可以加x坐标以及y坐标，也可以加left，center这类值。</p>
+    <p1>ellipse()</p1>
+    <p>这个属性设置的就是椭圆的内容。</p>
+    <xmp>
+        shape-outside: ellipse(25% 10%);
+    </xmp>
+    <p>椭圆需要设置两个半径，一个x一个y。跟圆一样，椭圆也可以设置圆心的位置，加一个at，后面设置圆心的坐标。</p>
+    <p1>polygon()</p1>
+    <p>polygon()函数可以对形状定义任意数量的点</p>
+    <xmp>
+        shape-outside: polygon(x1 y1, x2 y2, x3 y3, x4 y4, x5 y5);
+    </xmp>
+    <p>这个跟svg画点有点像，一个坐标一个坐标的画点，第一个坐标和最后一个坐标连接起来。可以用百分比或者像素。</p>
+
+    <p>PS:这里只是简单的介绍，具体还需要大家自己去敲敲代码，才能加深理解。</p>
+
+
+
+
+
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+<script src="../../../../plugins/js/jquery.lazyload.js"></script>
+</body>
+</html>

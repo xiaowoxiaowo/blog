@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>有方向的hover效果</title>
+</head>
+<style>
+    .block{
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 100px;
+        perspective: 1000px;
+        perspective-origin:46% 41%;
+    }
+    .block .up{
+        position: absolute;
+        top:-71px;
+        z-index: 99;
+        width: 102px;
+        height: 102px;
+        transform:rotate(45deg);
+    }
+    .block .up:hover ~.dice{
+        transform:rotateX(-180deg);
+    }
+    .block .up:hover ~.dice #page3{
+        transform: rotateX(-180deg);
+    }
+    .block .left{
+        position: absolute;
+        left: -71px;
+        z-index: 99;
+        width: 102px;
+        height: 102px;
+        transform:rotate(45deg);
+    }
+    .block .left:hover ~.dice{
+        transform:rotateY(180deg);
+    }
+    .block .down{
+        position: absolute;
+        top: 71px;
+        z-index: 99;
+        width: 102px;
+        height: 102px;
+        transform:rotate(45deg);
+    }
+    .block .down:hover ~.dice{
+        transform:rotateX(180deg);
+    }
+    .block .down:hover ~.dice #page3{
+        transform: rotateX(-180deg);
+    }
+    .block .right{
+        position: absolute;
+        right: -73px;
+        z-index: 99;
+        width: 102px;
+        height: 102px;
+        transform:rotate(45deg);
+    }
+    .block .right:hover ~.dice{
+        transform:rotateY(-180deg);
+    }
+    .dice{
+        width: 100px;
+        height: 100px;
+        margin: 0px auto;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+        transform-origin:50% 50% -50px;
+    }
+    .page{
+        z-index: 90;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        font-size: 100px;
+        color: #fff;
+        line-height: 100px;
+        text-align: center;
+        border: 1px solid gray;
+        background:rgba(88,88,88,1);
+    }
+    #page2{
+        transform: rotateY(-90deg);
+        transform-origin: right;
+    }
+    #page3{
+        transform: rotateY(-180deg);
+        transform-origin:50% 50% -50px;
+    }
+    #page4{
+        transform: rotateY(90deg);
+        transform-origin: left;
+    }
+    #page5{
+        transform: rotateX(-90deg);
+        transform-origin: top;
+    }
+    #page6{
+        transform: rotateX(90deg);
+        transform-origin: bottom;
+    }
+    h4{
+        text-align: center;
+    }
+</style>
+<body>
+
+<h4 style="margin-top: 60px;">延展应用</h4>
+<div class="block">
+    <div class="up"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="down"></div>
+    <div class="dice">
+        <div class="page" id="page1">1</div>
+        <div class="page" id="page2">2</div>
+        <div class="page" id="page3">3</div>
+        <div class="page" id="page4">4</div>
+        <div class="page" id="page5">5</div>
+        <div class="page" id="page6">6</div>
+    </div>
+</div>
+</body>
+</html>

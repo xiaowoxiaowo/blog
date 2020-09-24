@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>CSS实现的水波荡漾效果</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <style>
+        iframe{
+            position: relative;
+            width: 300px;
+            height: 350px;
+            border: 1px solid #2e576b;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">CSS实现的水波荡漾效果</div>
+        <div class="date">13 October 2017</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>国庆中秋双节8天假期过后,人又从慵懒的假期转变成工作的状态，就这样到了第一个星期的周五，突然就不想工作了，还是找点内容写个博客。</p>
+    <p>今天介绍一个纯CSS实现的水波荡漾效果，简单易用，效果很好。我们先来看看具体的效果</p>
+    <iframe src="demo/demo1.html" frameborder="0"></iframe>
+    <p>如上所示，第一眼是不是觉得做这个东西很难，NO NO NO 其实只要弄懂了其中的原理，做起来真的特别简单，仅仅只是几行代码而已。</p>
+    <p>先给个提示，这个效果的重点是在border-radius属性上，以及配合CSS动画的旋转效果实现出来的。我们平时用到border-radius是需要让div的方形的四个角
+       变成圆角，但是平时我们在设置这个属性的时候，会发现，有时候设置出来的角并不是圆形的，而是有点椭圆形状的。我们让这椭圆形的角旋转，然后只取部分让
+        他显示，就可以模拟出水波荡漾的效果。核心代码如下:</p>
+    <p>CSS代码</p>
+    <xmp>
+        .card {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 15px 3px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .card::after {
+            content: '';
+            display: block;
+            width: 100%;  height: 100%;
+            background: linear-gradient(to bottom, #0065a8, rgba(221, 238, 255, 0.4) 46%, rgba(255, 255, 255, 0.5));
+        }
+        .wave {
+            position: absolute;
+            top: 3%; left: 50%;
+            width: 400px;  height: 400px;
+            margin-top: -200px; margin-left: -200px;
+            background: #0af;
+            border-radius: 40%;
+            opacity: .4;
+            animation: shift 3s infinite linear;
+        }
+        .wave.w2 {
+            background: yellow;
+            opacity: .1;
+            animation: shift 7s infinite linear;
+        }
+        .wave.w3 {
+            animation: shift 5s infinite linear;
+            background: crimson;
+            opacity: 0.1;
+        }
+        @keyframes shift {
+            from {
+            transform: rotate(360deg);
+            }
+        }
+    </xmp>
+    <p>HTML内容</p>
+    <xmp>
+        <div class="card">
+            <div class="wave w1"></div>
+            <div class="wave w2"></div>
+            <div class="wave w3"></div>
+        </div>
+    </xmp>
+    <p>在这里，我们叠加了三个波浪，这样看起来更有层次感。效果更加的好。三个叠加的波浪各有不同的颜色，加上透明度让波浪只在顶端进行显示，并给每个波浪
+        设置不同的动画持续时间。最后就出来了这个层次分明的水波荡漾效果。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

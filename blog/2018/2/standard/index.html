@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>关于CSS和JavaScript的编码规范</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">关于HTML、CSS和JavaScript的编码规范</div>
+        <div class="date">23 February 2018</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+        <a class="tag" href="../../../../js/css/"><span>JS</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>CSS和JavaScript的编码对于不同的人来说可能都有不同的个人习惯和标准，这个东西没有一个标准答案，不同的公司可能都有自己的编码规范，
+    但是对于很多的中小公司来说，可能真的就是各凭本事，没有标准可言。但是对于你自己来说，平时写的代码不要求要跟某某大公司的规范一样，但是必须得
+    保持一致性，这个很重要。</p>
+    <p>下面是我个人的编码规范，也是我参照谷歌，bootstrap以及网上的一些内容总结出来的，就当给你们一个参照。</p>
+    <h4>CSS</h4>
+    <p>下面这是谷歌的规范</p>
+    <ul>
+        <li>使用有效的CSS, 除非是bugs处理或专属语法（浏览器私有前缀）</li>
+        <li>使用短ID或类命名，但确保他们不要太过隐晦，或直白（如#blue-button）</li>
+        <li>大型项目使用前缀，如#xyz-help, .xyz-column</li>
+        <li>选择器尽可能简单，如#example，而不是ul#example</li>
+        <li>使用缩写</li>
+        <li>url()中不使用引号，0后面不跟单位</li>
+        <li>使用#ABC这种简写的16进制颜色表示，而不是#AABBCC</li>
+        <li>每个声明最后都要有分号（即使是最后一个）</li>
+        <li>避免浏览器hacks</li>
+        <li>尺寸前面的数值0省掉，如.5em, 可以节约一个字符</li>
+    </ul>
+    <p>然后，声明的书写按照首字母顺序排列，如下：</p>
+    <xmp>
+        #example{
+            border: 1px solid #000;
+            border-radius: 6px;
+            display: block;
+            font-family: sans-serif;
+            margin: 1em;
+            outline: 0;
+            padding: 10px;
+            text-align: center;
+        }
+    </xmp>
+    <p>我个人觉得这种的排列方式不是很好，不光是我，很多前端工程师还是推荐根据其相关性来进行排序，下面列一个bootstrap推荐的css规范</p>
+    <xmp>
+        .example {
+            /* 定位属性 */
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+
+            /* 盒子模型 */
+            display: block;
+            float: right;
+            width: 100px;
+            height: 100px;
+
+            /* 排版 */
+            font: normal 13px "Helvetica Neue", sans-serif;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+
+            /* 视觉 */
+            background-color: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+
+            /* 杂项 */
+            opacity: 1;
+        }
+    </xmp>
+    <p>不同类型的属性，分开排序，在调试的时候也容易找到相应的属性，也能防止属性的重复以及覆盖。</p>
+    <h4>JS</h4>
+    <p>这个概况的东西挺多的，在这边，我去除一些笼统的概念，只列一些平时容易忽视的东西</p>
+    <ul>
+        <li>使用驼峰命名（如：camelCaseNames）以及大写的常量（如：UPPERCASE），避免使用const关键字，因为IE不支持</li>
+        <li>避免eval()除非反序列化（奇怪的是JSON解析并未提及）</li>
+        <li>避免对象上使用with(), 数组使用for in</li>
+        <li>要知道truthy和falsy规则</li>
+        <li>JavaScript资源中不使用IE条件注释</li>
+        <li>不修改内置对象的原型——这会让人颜面扫地，因为这是让JavaScript更加强大的功能之一，但你知道这会导致问题</li>
+        <li>小心使用闭包以及不要循环引用</li>
+    </ul>
+    <p>但是说实话，这边里面有部分内容我也不是很清楚，感觉不是一些通用常见的js注意点。我个人再补充一个，再js里都使用单引号。如果你的js包含html字符
+    你就会发现使用单引号是多么明智的一个决定了。</p>
+    <p1>不管是我这些规范或者是一些公司规定的规范，目的都是一样的，就是要保持代码的一致性，让后面的程序员能够直观清楚的参与项目。规范看过了，但是
+    还是需要你自己平时多注意多记忆，你以后肯定会庆幸养成了这种习惯。</p1>
+
+
+
+
+
+
+
+
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

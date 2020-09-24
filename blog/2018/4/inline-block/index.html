@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>我所知道的所有inline-block不显示间隔方法</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">我所知道的所有inline-block不显示间隔方法</div>
+        <div class="date">12 April 2018</div>
+        <a class="tag" href="../../../../classify/css/"><span>CSS</span></a>
+        <a class="tag" href="../../../../classify/html/"><span>HTML</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>inline-block相对于浮动是比较方便的一个行内排序方法，但是inline-block因为空格的存在，是会有一点间隔的，之前我知道几个方法能去掉，今天又发现了好几个不错的办法
+    所以在这边做一个合集分享一下。</p>
+    <h4>HTML方法</h4>
+    <p>这类方法通过HTML标签的办法实现</p>
+    <p2>1.移除空格</p2>
+    <p>既然是因为空格产生的间隔，那我们就把空格去掉</p>
+    <xmp>
+        <div class="test">
+            <a href="#">测试1</a><a href="#">测试2</a><a href="#">测试2</a>
+        </div>
+    </xmp>
+    <p>不过这个方法对于子元素比较多的情况下不是很友好。</p>
+    <p2>2.间隔错位放置或省略方法</p2>
+    <p>这个方法通过HTML的错位放置来实现</p>
+    <xmp>
+        兼容IE
+        <div class="test">
+            <a href="#">测试1</a
+            ><a href="#">测试2</a
+            ><a href="#">测试2</a>
+        </div>
+        <div class="test">
+            <a href="#">测试1
+            <a href="#">测试2
+            <a href="#">测试3</a>
+        </div>
+        HTML5
+        <div class="test">
+            <a href="#">测试1
+            <a href="#">测试2
+            <a href="#">测试3
+        </div>
+    </xmp>
+    <h4>CSS方法</h4>
+    <p>这类方法通过CSS的属性设置来实现，不需要修改HTML。</p>
+    <p2>1.margin负值</p2>
+    <xmp>
+        .test{
+            display:inline-block;
+        }
+        .test a{
+            ...
+        }
+        .test a + a{
+            margin-left:-5px;
+        }
+    </xmp>
+    <p>因为间隔跟上下文的字体大小有关系，而且还需要多加一段css来让除了第一项的内容改变，不推荐使用这个</p>
+    <p2>2.font-size:0</p2>
+    <xmp>
+        .test{
+            display:inline-block;
+            font-size:0
+        }
+        .test a{
+            font-size:xxPX;
+        }
+    </xmp>
+    <p>这个方法基本上可以解决大部分浏览器下inline-block元素之间的间距,推荐大家使用这个</p>
+    <p2>3.letter-spacing</p2>
+    <xmp>
+        .test{
+            display:inline-block;
+            letter-spacing:-xPX;
+        }
+        .test a{
+            letter-spacing: xPX;
+        }
+    </xmp>
+    <p>这个办法跟margin负值类似，多种浏览器的兼容可能会有问题。</p>
+    <p2>4.word-spacing</p2>
+    <xmp>
+        .test{
+            display:inline-block;
+            word-spacing:-5PX;
+        }
+        .test a{
+            word-spacing: 0;
+        }
+    </xmp>
+    <p>这个方法也基本可以解决大部分浏览器的问题</p>
+    <p>PS:我所知道的，相对比较方便的方法就是这些，如果你有补充可以在下面评论给我。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>offset-path控制图形沿不规则路线移动</title>
+    <link href="../../../../favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/biaoqing.css">
+    <link rel="stylesheet" href="https://luolei.org/assets/css/font.min.css" media="all">
+    <style>
+        iframe{
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="page_head" style='background: url("imgs/1.jpg") no-repeat 50% 20% / cover;'>
+    <div class="box">
+        <a href="http://zouxiaowo.cn" class="home">HOME</a>
+        <div class="title">offset-path控制图形沿不规则路线移动</div>
+        <div class="date">02 November 2017</div>
+        <a class="tag" href="../../../../classify/svg/"><span>SVG</span></a>
+    </div>
+</div>
+
+<div class="content">
+    <p>临近双11的日子，各位小伙伴们的购物车里是否已经躺好了很多即将收入囊中的东西，恭喜你，下个月的工资马上就要清零了。我也挡不住诱惑，准备入一双鞋子，真的便宜，哈哈。</p>
+    <p>今天介绍一个简单但是非常实用的效果,通过SVG方式实现的图形的沿不规则路线移动的效果。话不多说，先来看看demo效果。</p>
+    <iframe src="demo/index.html" frameborder="0"></iframe>
+    <p>重点看得就是这个图片的移动效果，后面红色的移动路径是我另外加了一个svg来显示的。我们来看看代码</p>
+    <xmp>
+        .offset{
+        position: absolute;
+        offset-path: path("M10,80 q100,120 120,20 q140,-50 160,0");
+        animation: move 3s linear infinite;
+        }
+
+        @keyframes move {
+        100% { offset-distance: 100%;}
+        }
+
+        <img src="" class="offset">
+        <svg width="280" height="150">
+            <path d="M10,80 q100,120 120,20 q140,-50 160,0"/>
+        </svg>
+    </xmp>
+    <p>代码其实很简单，就是给img的class添加一个offset-path路径和关键帧动画。它就会按照path设置的路径移动了。path的路径设置是跟svg一样的，不懂的同学可以先去了解一下svg路径的原理。</p>
+    <p>offset-path还有一个比较实用的属性offset-rotation，你可以设置角度值让这个图片的方向进行旋转，或者设置为reverse让这个图片上下颠倒。</p>
+    <p>这个实现方式很简单，不需要加什么东西。但是在实际的项目中还是不能用，因为这个兼容性特别的差，基本只有chrome以及opera浏览器可以使用，在开发中还是推荐使用SVG SMIL animation来
+    实现这个沿不规则路径移动的效果。</p>
+
+    <hr/>
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140645"></script>
+</div>
+
+<footer>
+    窝窝的个人博客 © 2017
+</footer>
+</body>
+</html>
