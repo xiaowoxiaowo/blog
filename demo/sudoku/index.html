@@ -130,10 +130,6 @@
 		var res = [[],[],[],[],[],[],[],[],[]];
 		for (var i = 0; i < list.length; i ++) {
 			var val = list[i].innerHTML;
-			if (!val) {
-				alert('请全部填写完毕之后再提交');
-				return;
-			}
 			res[Math.floor(i / 9)].push(val);
 		}
 		return res;
