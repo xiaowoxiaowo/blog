@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>一起来解数独</title>
+</head>
+<style>
+	.sudoku_box {
+		width: 600px;
+		height: 450px;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
+	.content {
+		display: inline-block;
+		width: 450px;
+		height: 450px;
+		border: 2px solid black;
+	}
+  .row {
+		overflow: hidden;
+		height: 50px;
+		box-sizing: border-box;
+		border-bottom: 1px solid rgba(0,0,0,0.4);
+	}
+	.row:nth-child(3),
+	.row:nth-child(6) {
+		border-bottom: 2px solid black;
+	}
+  .item {
+		float: left;
+		width: 50px;
+		height: 100%;
+		box-sizing: border-box;
+		border-right: 1px solid rgba(0,0,0,0.4);
+		cursor: pointer;
+		text-align: center;
+		line-height: 50px;
+		font-size: 30px;
+	}
+	.item:nth-child(3),
+	.item:nth-child(6) {
+		border-right: 2px solid black;
+	}
+	.item.active {
+		border: 1px solid rgb(22, 22, 102);
+	}
+	.item.readonly {
+		color: red;
+	}
+	.config_box {
+		display: inline-block;
+		vertical-align: top;
+		width: 135px;
+	}
+	#reset,
+	#confirm,
+	#restart,
+	#clear {
+		display: block;
+		height: 30px;
+		width: 100%;
+		cursor: pointer;
+		margin-bottom: 10px;
+	}
+	.config_box .num {
+		width: 40px;
+		height: 40px;
+		box-sizing: border-box;
+		border: 1px solid #aaa;
+		text-align: center;
+		line-height: 40px;
+		cursor: pointer;
+		float: left;
+		margin-left: 5px;
+		margin-bottom: 5px;
+	}
+	.config_box .num:hover {
+		border: 1px solid rgb(22, 22, 102);
+	}
+</style>
+<script src="./sudokuData.js"></script>
+<body>
+	<div class="sudoku_box">
+		<div class="content"></div>
+		<div class="config_box">
+			<button id="restart">换一套题</button>
+			<button id="reset">重置</button>
+			<div class="num" id="1">1</div>
+			<div class="num" id="2">2</div>
+			<div class="num" id="3">3</div>
+			<div class="num" id="4">4</div>
+			<div class="num" id="5">5</div>
+			<div class="num" id="6">6</div>
+			<div class="num" id="7">7</div>
+			<div class="num" id="8">8</div>
+			<div class="num" id="9">9</div>
+			<button id="clear">清除单个</button>
+			<button id="confirm">提交</button>
+		</div>
+	</div>
+<script>
+	// dom元素初始化
+	var preActive = '';
+	var curData = [];
+	var curIndex = -1;
+	function tempInit() {
+		var temp = '';
+		for (var i = 0; i < 9; i ++) {
+			temp += '<div class="row">';
+			for (var j = 0; j < 9; j ++) {
+				temp += `<div class="item" data-pos='${i}-${j}'></div>`;
+			}
+			temp += '</div>';
+		}
+		document.querySelector('.content').innerHTML = temp;
+		// 数独框的点击事件
+		document.querySelector('.content').addEventListener('click', function(e) {
+			var pos = e.target.getAttribute('data-pos');
+			if (document.querySelector(`[data-pos='${pos}']`).classList.value.indexOf('readonly') > -1) return;
+			if (preActive) preActive.classList = 'item';
+			preActive = document.querySelector(`[data-pos='${pos}']`);
+			preActive.classList = 'item active';
+		});
+	}
+	// 获取数组数据，以二维数组形式返回
+	function getValArr () {
+		var list = document.querySelectorAll('.item');
+		var res = [[],[],[],[],[],[],[],[],[]];
+		for (var i = 0; i < list.length; i ++) {
+			var val = list[i].innerHTML;
+			if (!val) {
+				alert('请全部填写完毕之后再提交');
+				return;
+			}
+			res[Math.floor(i / 9)].push(val);
+		}
+		return res;
+	}
+	// 把数独的初始化渲染到页面
+	function setData () {
+		preActive = '';
+		for (var i = 0; i < 9; i ++) {
+			for (var j = 0; j < 9; j ++) {
+				var dom = document.querySelector(`[data-pos='${i}-${j}']`);
+				if (curData[i][j] === '.') {
+					dom.innerHTML = '';
+					dom.classList = 'item';
+				} else {
+					dom.innerHTML = curData[i][j];
+					dom.classList = 'item readonly';
+				}
+			}
+		}
+	}
+	// 数独数据初始化，从sudokuList中随机抽取一个
+	function createSudoku () {
+		let len = sudokuList.length;
+		let index = Math.floor(Math.random() * len);
+		while (curIndex === index) {
+			index = Math.floor(Math.random() * len);
+		}
+		curIndex = index;
+		curData = sudokuList[index];
+		setData();
+	}
+	// 递归回溯法解数独
+	function solveSudoku(board) {
+		// let board = JSON.parse(JSON.stringify(boards));
+		// 定义三个数组来记录，每一行，每一行，每一个3X3里已经被使用过的参数
+		let lineX = [];
+		let lineY = [];
+		let area3x3 = [];
+		for (let n = 0; n < 9; n ++) {
+			lineX[n] = {};
+			lineY[n] = {};
+			if (((n + 1) % 3) === 0) {
+				const curIndex = (n + 1) / 3;
+				area3x3[curIndex - 1] = [{}, {}, {}];
+			} 
+		}
+		// 用来增加（删除）记录
+		const toggleCache = (i, j, val, type) => {
+			const flag = (type === 'add' ? true : false);
+			lineX[i][val] = flag;
+			lineY[j][val] = flag;
+			area3x3[Math.floor(i / 3)][Math.floor(j / 3)][val] = flag;
+		};
+		// 判断当前数据是否在当前行，列，3x3中存在
+		const hasCache = (i, j, val) => {
+			if(lineX[i][val]) return true;
+			if(lineY[j][val]) return true;
+			if(area3x3[Math.floor(i / 3)][Math.floor(j / 3)][val]) return true;
+			return false;
+		};
+		// 初始化，将初始数据传入记录中
+		for (let i = 0; i < 9; i ++) {
+			for (let j = 0; j < 9; j ++) {
+				const val = board[i][j];
+				if (val !== '.') toggleCache(i, j, val, 'add');
+			}
+		}
+		let res = [];
+		// 递归方法
+		const dfs = (xIndex, yIndex) => {
+			// 当x轴递归到9时，结束递归。
+			// 因为本题都只有唯一解，所以需要return一个true，用来计算出值之后，提前退出
+			if (xIndex === 9) return true;
+			// 当y轴递归到9时，将x加1，继续下一行的递归
+			if (yIndex === 9) return dfs(xIndex + 1, 0);
+			if (board[xIndex][yIndex] === '.') {
+				// 如果当前没有值，遍历1-9
+				for (let v = 1; v <= 9; v ++) {
+					// 判断遍历的v是否满足同一行，同一列，3x3都没有被使用过
+					if (!hasCache(xIndex, yIndex, String(v))) {
+						// 递归
+						board[xIndex][yIndex] = String(v);
+						toggleCache(xIndex, yIndex, v, 'add');
+						if (dfs(xIndex, yIndex + 1)) return true;
+						// 回溯
+						board[xIndex][yIndex] = '.';
+						toggleCache(xIndex, yIndex, v, 'remove');
+					}
+				}
+			} else {
+				// 如果当有初始值，跳到下一个节点
+				return dfs(xIndex, yIndex + 1);
+			}
+		};
+
+		dfs(0, 0);
+		return board;
+	};
+	function check() {
+		const res = getValArr();
+		const correctRes = solveSudoku(JSON.parse(JSON.stringify(curData)));
+		if(JSON.stringify(res) === JSON.stringify(correctRes)) {
+			alert('恭喜你，回答正确！');
+		} else {
+			alert('不要意思，回答错误，请修改之后再提交！');
+		}
+	}
+	// 右侧操作栏的点击事件
+	function configInit() {
+		document.querySelector('.config_box').addEventListener('click', function(e) {
+			var type = e.target.id;
+			if (!type) return;
+			if (type === 'restart') {
+				createSudoku();
+			} else if (type === "reset") {
+				setData();
+			} else if (type === "confirm") {
+				check();
+			} else if (type === "clear") {
+				if (preActive) preActive.innerText = '';
+			} else {
+				if (preActive) preActive.innerText = type;
+			}
+		});
+	}
+	tempInit();
+	configInit();
+	createSudoku();
+	
+</script>
+</body>
+</html>
