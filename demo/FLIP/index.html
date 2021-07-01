@@ -83,7 +83,7 @@
       // 修改元素列表
       fn();
       // 获取修改之后，新的元素位置
-      const newRects = getLeftOrTops().slice(1);
+      const newRects = getLeftOrTops();
       // 这里的排序主要为了处理重新排列之后，新旧元素可以相互对应上
       oldRects.sort((a,b) => a.key - b.key);
       newRects.sort((a,b) => a.key - b.key);
@@ -120,14 +120,12 @@
         const curIndex = count++;
         itemList.unshift(curIndex);
         $box.insertBefore(createItem(curIndex), $box.childNodes[0]);
-        const newRects = getLeftOrTops().slice(1);
       });
     };
     // 重新排列所有元素
     const itemReset = () => {
       moveItem(() => {
         resetList(itemList);
-        const newRects = getLeftOrTops();
       });
     };
     // 删除某个元素
@@ -138,7 +136,6 @@
         const index = itemList.indexOf(Number(item.innerHTML));
         $box.removeChild(item);
         itemList.splice(index, 1);
-        const newRects = getLeftOrTops();
       });
     };
 
