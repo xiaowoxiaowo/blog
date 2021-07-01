@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FLIP</title>
+    <style>
+      .item_box {
+        display: flex;
+        flex-wrap: wrap;
+        width: 400px;
+        min-height: 150px;
+        box-sizing: border-box;
+        margin-top: 10px;
+      }
+      .item {
+        width: 80px;
+        height: 80px;
+        margin-left: 5px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        background: white;
+        text-align: center;
+        line-height: 80px;
+        cursor: pointer;
+      }
+      .item.active {
+        border: 1px solid lightsalmon;
+      }
+      .content {
+        width: 400px;
+        margin: 30px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <button id="add">新增元素</button>
+      <button id="delete">删除元素</button>
+      <button id="reset">重新排列所有元素</button>
+      <div class="item_box"></div>
+    </div>
+  <script>
+    let count = 11;
+    // 数据列表，每次修改页面元素，都会同步修改这个数据
+    const itemList = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    // 缓存上次的数据每一项的left和top
+    let rectCache = [];
+    const $box = document.querySelector('.item_box');
+    // 创建一个新的div元素
+    const createItem = (index) => {
+      const dom = document.createElement('div');
+      dom.className = `item item${index}`;
+      dom.innerHTML = index;
+      return dom;
+    };
+    // 随机排列所有元素的位置
+    const resetList = (arr) => {
+      const len = arr.length;
+      for(let i = len - 1; i > 0; i --) {
+        let index = Math.floor(Math.random() * i);
+        [arr[i], arr[index]] = [arr[index], arr[i]];
+      }
+      for (let i = 0; i < arr.length; i ++) {
+        $box.childNodes[i].className = `item item${arr[i]}`;
+        $box.childNodes[i].innerHTML = arr[i];
+      }
+    };
+    // 获取数据列表中每一项元素的left和top值
+    const getLeftOrTops = () => {
+      const rectList = [];
+      for (let i = 0; i < itemList.length; i ++) {
+        const { left, top } = document.querySelector(`.item${itemList[i]}`).getBoundingClientRect()
+        rectList.push({ left, top, key: itemList[i] });
+      }
+      rectCache = rectList;
+      return rectList;
+    };
+    // 关键方法，移动元素的方法
+    const moveItem = (fn) => {
+      // 在修改元素列表（新增，删除，重新排列）之前，获取所有元素的left和top
+      const oldRects = rectCache.length ? rectCache : getLeftOrTops();
+      // 修改元素列表
+      fn();
+      // 获取修改之后，新的元素位置
+      const newRects = getLeftOrTops().slice(1);
+      // 这里的排序主要为了处理重新排列之后，新旧元素可以相互对应上
+      oldRects.sort((a,b) => a.key - b.key);
+      newRects.sort((a,b) => a.key - b.key);
+      for (let i = 0; i < oldRects.length; i ++) {
+        // 这里是为了处理，删除元素之后，新元素会比旧元素少一项
+        if (oldRects[i].key !== newRects[i].key) {
+          newRects.splice(i, 0, 'null');
+          continue;
+        }
+        // 计算新元素相比于老元素时的位置变化
+        const move = [
+          { transform: `translate(${oldRects[i].left - newRects[i].left}px, ${oldRects[i].top - newRects[i].top}px)` },
+          { transform: "translate(0)" },
+        ];
+        const dom = document.querySelector(`.item${oldRects[i].key}`);
+        // 这里使用web api的animate方法，让元素移动
+        dom && dom.animate(move, {
+          duration: 300,
+          easing: "cubic-bezier(0,0,0.4,1)",
+        });
+      }
+    };
+
+    const itemInit = () => {
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < itemList.length; i ++) {
+        fragment.appendChild(createItem(itemList[i]));
+      }
+      $box.appendChild(fragment);
+    };
+    // 新增元素方法
+    const itemAdd = () => {
+      moveItem(() => {
+        const curIndex = count++;
+        itemList.unshift(curIndex);
+        $box.insertBefore(createItem(curIndex), $box.childNodes[0]);
+        const newRects = getLeftOrTops().slice(1);
+      });
+    };
+    // 重新排列所有元素
+    const itemReset = () => {
+      moveItem(() => {
+        resetList(itemList);
+        const newRects = getLeftOrTops();
+      });
+    };
+    // 删除某个元素
+    const itemDelete = () => {
+      const item = document.querySelector('.item.active');
+      if (!item) return alert('请先选择某一项');
+      moveItem(() => {
+        const index = itemList.indexOf(Number(item.innerHTML));
+        $box.removeChild(item);
+        itemList.splice(index, 1);
+        const newRects = getLeftOrTops();
+      });
+    };
+
+    const itemClick = (e) => {
+      const prev = document.querySelector('.item.active');
+      if (prev) prev.className = prev.className.replace('active', '');
+      e.target.className = `${e.target.className} active`;
+    };
+
+    itemInit();
+    document.getElementById('add').onclick = itemAdd;
+    document.getElementById('reset').onclick = itemReset;
+    document.querySelector('.item_box').onclick = itemClick;
+    document.getElementById('delete').onclick = itemDelete;
+  </script>
+  </body>
+</html>
